@@ -3,11 +3,11 @@ const multer = require("multer");
 const multerS3 = require("multer-s3");
 
 // Configure AWS
-const spacesEndpoint = new AWS.Endpoint("blr1.digitaloceanspaces.com"); // Replace with your Space's endpoint
+const spacesEndpoint = new AWS.Endpoint("https://syd1.digitaloceanspaces.com/"); // Replace with your Space's endpoint
 const s3 = new AWS.S3({
   endpoint: spacesEndpoint,
-  accessKeyId: process.env.AWS_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: process.env.BUCKET_ACCESS_KEY,
+  secretAccessKey: process.env.BUCKET_SECRET_ACCESS_KEY,
 });
 
 // Configure multer

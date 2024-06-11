@@ -28,6 +28,7 @@ exports.register = async (req, res) => {
     bio,
   } = req.body;
   try {
+    console.log(req.body);
     /* Check if the email exists or not */
     const userWithEmailOrUserNameOrPhone = await User.findOne({
       $or: [{ userName: userName }, { email: email }, { phoneNo: phoneNo }],
@@ -54,14 +55,14 @@ exports.register = async (req, res) => {
     /* ---/////////////////////Generate Otp ///////////////////////
     ---------------------------            ------------------------
     */
-    const otp = otpGenerator.generate(6, {
-      digits: true,
-      upperCase: false,
-      specialChars: false,
-    });
+    // const otp = otpGenerator.generate(6, {
+    //   digits: true,
+    //   upperCase: false,
+    //   specialChars: false,
+    // });
 
-    // // console.log(otp);
-    const otpResponse = await sendOtp(phoneNo, otp);
+    // console.log(otp);
+    // const otpResponse = await sendOtp(phoneNo, otp);
 
     /* Create new user */
     const newUser = new User({
@@ -73,7 +74,7 @@ exports.register = async (req, res) => {
       password: hashedPassword,
       gender,
       bio,
-      otp,
+      // otp,
     });
 
     /* Save new user */

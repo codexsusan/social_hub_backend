@@ -13,8 +13,20 @@ const { fileTooLargeErrorHandle } = require("./utils/file_upload.js");
 const bodyParser = require("body-parser");
 const compression = require("compression");
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://socialhub.susankhadka.com.np",
+];
+
+const corsOptions = {
+  origin: allowedOrigins,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+};
+
+
 /* Middlewares */
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(compression());
